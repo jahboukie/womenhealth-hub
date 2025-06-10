@@ -1,7 +1,9 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Inter } from 'next/font/google';
+import { useAuth } from '@/hooks/useAuth';
+import AuthModal from '@/components/auth/AuthModal';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -10,6 +12,19 @@ interface LayoutProps {
 }
 
 export default function Layout({ children }: LayoutProps) {
+  const [authModalOpen, setAuthModalOpen] = useState(false);
+  const [authMode, setAuthMode] = useState<'signin' | 'signup'>('signin');
+  const { user, signOut, loading } = useAuth();
+
+  const handleAuthClick = (mode: 'signin' | 'signup') => {
+    setAuthMode(mode);
+    setAuthModalOpen(true);
+  };
+
+  const handleSignOut = async () => {
+    await signOut();
+  };
+
   return (
     <div className={`${inter.className} min-h-screen bg-white`}>
       <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100">
@@ -20,7 +35,7 @@ export default function Layout({ children }: LayoutProps) {
                 WomenHealth.Health
               </div>
             </div>
-            
+
             <div className="hidden md:flex items-center space-x-8">
               <a href="#platform" className="text-gray-600 hover:text-primary-600 transition-colors">
                 Platform
@@ -34,15 +49,47 @@ export default function Layout({ children }: LayoutProps) {
               <a href="#contact" className="text-gray-600 hover:text-primary-600 transition-colors">
                 Contact
               </a>
+              {user && (
+                <a href="/dashboard" className="text-gray-600 hover:text-primary-600 transition-colors">
+                  Dashboard
+                </a>
+              )}
             </div>
-            
+
             <div className="flex items-center space-x-4">
-              <button className="cta-secondary text-sm px-6 py-2">
-                Book Demo
-              </button>
-              <button className="cta-primary text-sm px-6 py-2">
-                Get Started
-              </button>
+              {loading ? (
+                <div className="text-sm text-gray-500">Loading...</div>
+              ) : user ? (
+                <>
+                  <div className="text-sm text-gray-700">
+                    Welcome, {user.user_metadata?.full_name || user.email}
+                  </div>
+                  <button
+                    type="button"
+                    onClick={handleSignOut}
+                    className="cta-secondary text-sm px-6 py-2"
+                  >
+                    Sign Out
+                  </button>
+                </>
+              ) : (
+                <>
+                  <button
+                    type="button"
+                    onClick={() => handleAuthClick('signin')}
+                    className="cta-secondary text-sm px-6 py-2"
+                  >
+                    Sign In
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => handleAuthClick('signup')}
+                    className="cta-primary text-sm px-6 py-2"
+                  >
+                    Get Started
+                  </button>
+                </>
+              )}
             </div>
           </div>
         </nav>
@@ -51,6 +98,12 @@ export default function Layout({ children }: LayoutProps) {
       <main className="pt-16">
         {children}
       </main>
+
+      <AuthModal
+        isOpen={authModalOpen}
+        onClose={() => setAuthModalOpen(false)}
+        initialMode={authMode}
+      />
 
       <footer className="bg-gray-900 text-white py-16">
         <div className="section-container">

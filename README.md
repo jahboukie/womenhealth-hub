@@ -1,6 +1,6 @@
 # WomenHealth.Health Flagship Website
 
-Revolutionary women's healthcare platform showcasing Dr. Alex AI and the complete healthcare ecosystem.
+Revolutionary women's healthcare platform showcasing Dr. Alex AI and the complete healthcare ecosystem with full-stack backend integration.
 
 ## 🌟 Project Overview
 
@@ -10,16 +10,146 @@ This is the flagship website for WomenHealth.Health, featuring:
 - **Embedded Domain**: dralexai.com
 - **Design Inspiration**: Stripe.com (infinite scroll, professional, generous white space)
 - **Core Theme**: Reactive Healthcare → Proactive Healthcare Revolution
+- **Backend Integration**: Full-stack Next.js with Supabase and AI integration
 
 ## 🚀 Technology Stack
 
-- **Frontend**: Next.js 14 with React 18
+### Frontend
+- **Framework**: Next.js 15 with React 19
 - **Styling**: Tailwind CSS with custom design system
 - **Animations**: Framer Motion
 - **TypeScript**: Full type safety
 - **Deployment**: Optimized for Vercel
 
+### Backend
+- **Database**: Supabase (PostgreSQL with real-time features)
+- **Authentication**: Supabase Auth with Row Level Security
+- **AI Integration**: Anthropic Claude API for Dr. Alex AI
+- **API Routes**: Next.js API routes for backend logic
+- **Type Safety**: Zod for runtime validation
+- **HIPAA Compliance**: Encrypted data storage and audit logging
+
 ## 🏗️ Architecture
+
+### Frontend Architecture
+- **Component-based**: Modular React components
+- **Custom Hooks**: Reusable logic for auth, AI chat, and health tracking
+- **State Management**: React hooks with local state
+- **Real-time Updates**: Supabase real-time subscriptions
+
+### Backend Architecture
+- **Database Schema**: Comprehensive healthcare data models
+- **API Endpoints**: RESTful APIs for all major features
+- **Authentication Flow**: Secure user registration and login
+- **AI Integration**: Claude API for intelligent health conversations
+- **Data Security**: HIPAA-compliant data handling
+
+## 🔧 Backend Features
+
+### 🔐 Authentication & User Management
+- **User Registration**: Secure signup with HIPAA consent
+- **Role-based Access**: Patient and Provider roles
+- **Profile Management**: Comprehensive user profiles with health data
+- **Session Management**: Secure authentication with Supabase
+
+### 🤖 Dr. Alex AI Integration
+- **Intelligent Conversations**: Claude-powered healthcare AI assistant
+- **Context-Aware Responses**: Personalized based on user health profile
+- **Symptom Analysis**: Automatic urgency detection and provider alerts
+- **Conversation History**: Persistent chat history with search and filtering
+
+### 📊 MenoWellness App Backend
+- **Symptom Tracking**: Comprehensive menopause symptom logging
+- **Pattern Recognition**: AI-powered trend analysis
+- **Analytics Dashboard**: Visual insights and recommendations
+- **Alert System**: Automated notifications for concerning patterns
+
+### 🏥 Healthcare Data Management
+- **HIPAA Compliance**: Encrypted storage and audit logging
+- **Medical History**: Secure storage of health records
+- **Provider Integration**: Future-ready for EHR integration
+- **Data Export**: Patient-controlled data portability
+
+### 📈 Analytics & Insights
+- **Health Insights**: AI-generated personalized recommendations
+- **Usage Analytics**: App engagement and health tracking metrics
+- **Trend Analysis**: Long-term health pattern recognition
+- **Risk Assessment**: Early warning systems for health concerns
+
+## 🚀 Getting Started
+
+### Prerequisites
+- Node.js 18+
+- npm or yarn
+- Supabase account
+- Anthropic API key (for Dr. Alex AI)
+
+### Environment Setup
+
+1. **Clone the repository**
+```bash
+git clone <repository-url>
+cd womenhealth-flagship-website
+```
+
+2. **Install dependencies**
+```bash
+npm install
+```
+
+3. **Set up environment variables**
+```bash
+cp .env.local.example .env.local
+```
+
+Fill in your environment variables:
+- `NEXT_PUBLIC_SUPABASE_URL`: Your Supabase project URL
+- `NEXT_PUBLIC_SUPABASE_ANON_KEY`: Your Supabase anonymous key
+- `SUPABASE_SERVICE_ROLE_KEY`: Your Supabase service role key
+- `ANTHROPIC_API_KEY`: Your Anthropic API key for Dr. Alex AI
+
+4. **Set up Supabase database**
+```bash
+# Run the schema.sql file in your Supabase SQL editor
+# This creates all necessary tables, policies, and functions
+```
+
+5. **Start the development server**
+```bash
+npm run dev
+```
+
+### Database Schema
+
+The application uses a comprehensive PostgreSQL schema with:
+
+- **Users & Profiles**: User authentication and detailed health profiles
+- **Dr. Alex Conversations**: AI chat history and metadata
+- **Symptom Tracking**: MenoWellness symptom logs and analytics
+- **Notifications**: User notification system
+- **Audit Logs**: HIPAA-compliant activity tracking
+- **Provider Relations**: Healthcare provider connections
+
+### API Endpoints
+
+#### Authentication
+- `POST /api/auth/sign-up` - User registration
+- `POST /api/auth/sign-in` - User login
+- `GET /api/auth/callback` - OAuth callback handler
+
+#### Dr. Alex AI
+- `POST /api/dr-alex/chat` - Send message to AI
+- `GET /api/dr-alex/conversations` - Get user conversations
+- `GET /api/dr-alex/conversations/[id]` - Get specific conversation
+
+#### MenoWellness
+- `POST /api/apps/menowellness/symptoms` - Log symptoms
+- `GET /api/apps/menowellness/symptoms` - Get symptom history
+- `GET /api/apps/menowellness/insights` - Get health insights
+
+#### User Dashboard
+- `GET /api/user/dashboard` - Get dashboard data
+- `PATCH /api/user/profile` - Update user profile
 
 ### Main Sections
 
