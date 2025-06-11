@@ -5,6 +5,11 @@ import { motion } from 'framer-motion';
 
 const DrAlexDemo = () => {
   const handleDemoClick = () => {
+    // Add haptic feedback for mobile
+    if ('vibrate' in navigator) {
+      navigator.vibrate(50);
+    }
+
     // Open demo in new tab
     window.open('/demo-dralexai', '_blank');
   };
@@ -142,16 +147,17 @@ const DrAlexDemo = () => {
                 onClick={handleDemoClick}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-4 px-8 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl flex items-center gap-3"
+                className="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-4 px-6 sm:px-8 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl flex items-center justify-center gap-3 text-base sm:text-lg min-h-[56px] touch-manipulation"
+                style={{ WebkitTapHighlightColor: 'transparent' }}
               >
                 <span className="text-xl">🚀</span>
-                Launch Dr. Alex AI Demo
-                <span className="text-sm bg-white/20 px-2 py-1 rounded-full">FREE</span>
+                <span className="whitespace-nowrap">Launch Dr. Alex AI Demo</span>
+                <span className="text-xs sm:text-sm bg-white/20 px-2 py-1 rounded-full">FREE</span>
               </motion.button>
-              
-              <div className="text-sm text-gray-400 flex items-center gap-2">
+
+              <div className="text-xs sm:text-sm text-gray-400 flex items-center gap-2 text-center">
                 <span className="w-2 h-2 bg-green-400 rounded-full"></span>
-                No signup required • Simulated data only
+                <span className="whitespace-nowrap">No signup required • Simulated data only</span>
               </div>
             </div>
 

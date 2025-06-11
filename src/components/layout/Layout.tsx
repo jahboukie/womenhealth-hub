@@ -14,6 +14,7 @@ interface LayoutProps {
 export default function Layout({ children }: LayoutProps) {
   const [authModalOpen, setAuthModalOpen] = useState(false);
   const [authMode, setAuthMode] = useState<'signin' | 'signup'>('signin');
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { user, signOut, loading } = useAuth();
 
   const handleAuthClick = (mode: 'signin' | 'signup') => {
@@ -31,7 +32,7 @@ export default function Layout({ children }: LayoutProps) {
         <nav className="section-container">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center space-x-2">
-              <div className="text-2xl font-bold healthcare-gradient bg-clip-text text-transparent">
+              <div className="text-lg sm:text-xl md:text-2xl font-bold healthcare-gradient bg-clip-text text-transparent">
                 WomenHealth.Health
               </div>
             </div>
@@ -56,18 +57,35 @@ export default function Layout({ children }: LayoutProps) {
               )}
             </div>
 
-            <div className="flex items-center space-x-4">
+            {/* Mobile menu button */}
+            <button
+              type="button"
+              className="md:hidden p-2 rounded-md text-gray-600 hover:text-primary-600 hover:bg-gray-100 transition-colors"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label="Toggle mobile menu"
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                {mobileMenuOpen ? (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                ) : (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                )}
+              </svg>
+            </button>
+
+            {/* Mobile & Desktop Auth Buttons */}
+            <div className="flex items-center space-x-2 md:space-x-4">
               {loading ? (
                 <div className="text-sm text-gray-500">Loading...</div>
               ) : user ? (
                 <>
-                  <div className="text-sm text-gray-700">
+                  <div className="hidden sm:block text-sm text-gray-700">
                     Welcome, {user.user_metadata?.full_name || user.email}
                   </div>
                   <button
                     type="button"
                     onClick={handleSignOut}
-                    className="cta-secondary text-sm px-6 py-2"
+                    className="cta-secondary text-xs sm:text-sm px-3 py-2 sm:px-6"
                   >
                     Sign Out
                   </button>
@@ -77,14 +95,14 @@ export default function Layout({ children }: LayoutProps) {
                   <button
                     type="button"
                     onClick={() => handleAuthClick('signin')}
-                    className="cta-secondary text-sm px-6 py-2"
+                    className="cta-secondary text-xs sm:text-sm px-3 py-2 sm:px-6 whitespace-nowrap"
                   >
                     Sign In
                   </button>
                   <button
                     type="button"
                     onClick={() => handleAuthClick('signup')}
-                    className="cta-primary text-sm px-6 py-2"
+                    className="cta-primary text-xs sm:text-sm px-3 py-2 sm:px-6 whitespace-nowrap"
                   >
                     Get Started
                   </button>
@@ -93,6 +111,51 @@ export default function Layout({ children }: LayoutProps) {
             </div>
           </div>
         </nav>
+
+        {/* Mobile menu dropdown */}
+        {mobileMenuOpen && (
+          <div className="md:hidden bg-white border-t border-gray-100 shadow-lg">
+            <div className="px-4 py-2 space-y-1">
+              <a
+                href="#platform"
+                className="block px-3 py-2 text-gray-600 hover:text-primary-600 hover:bg-gray-50 rounded-md transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Platform
+              </a>
+              <a
+                href="#apps"
+                className="block px-3 py-2 text-gray-600 hover:text-primary-600 hover:bg-gray-50 rounded-md transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Apps
+              </a>
+              <a
+                href="/about"
+                className="block px-3 py-2 text-gray-600 hover:text-primary-600 hover:bg-gray-50 rounded-md transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                About
+              </a>
+              <a
+                href="#contact"
+                className="block px-3 py-2 text-gray-600 hover:text-primary-600 hover:bg-gray-50 rounded-md transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Contact
+              </a>
+              {user && (
+                <a
+                  href="/dashboard"
+                  className="block px-3 py-2 text-gray-600 hover:text-primary-600 hover:bg-gray-50 rounded-md transition-colors"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Dashboard
+                </a>
+              )}
+            </div>
+          </div>
+        )}
       </header>
 
       <main className="pt-16">
