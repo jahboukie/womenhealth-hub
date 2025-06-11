@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import Layout from '@/components/layout/Layout';
 import { motion } from 'framer-motion';
@@ -232,62 +234,7 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Team Section */}
-        <section className="py-20 bg-gray-50">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              className="text-center mb-16"
-            >
-              <h2 className="text-4xl font-bold text-gray-900 mb-6">Leadership Team</h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Visionary leaders combining decades of healthcare expertise with cutting-edge AI innovation.
-              </p>
-            </motion.div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {[
-                {
-                  name: 'Dr. Sarah Chen',
-                  role: 'Chief Executive Officer',
-                  background: 'Former Chief Medical Officer at Johns Hopkins, 15+ years in women\'s health',
-                  expertise: 'Women\'s Health, Healthcare Innovation, Medical AI',
-                  image: '👩‍⚕️'
-                },
-                {
-                  name: 'Dr. Michael Rodriguez',
-                  role: 'Chief Technology Officer',
-                  background: 'Former AI Research Director at Google Health, PhD in Machine Learning',
-                  expertise: 'Healthcare AI, Machine Learning, Data Science',
-                  image: '👨‍💻'
-                },
-                {
-                  name: 'Dr. Emily Watson',
-                  role: 'Chief Medical Officer',
-                  background: 'Board-certified OB/GYN, Harvard Medical School, 20+ years clinical experience',
-                  expertise: 'Obstetrics & Gynecology, Reproductive Health, Clinical Research',
-                  image: '👩‍⚕️'
-                }
-              ].map((member, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: index * 0.1 }}
-                  className="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow"
-                >
-                  <div className="text-6xl mb-4 text-center">{member.image}</div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">{member.name}</h3>
-                  <div className="text-blue-600 font-semibold mb-3">{member.role}</div>
-                  <p className="text-gray-600 text-sm mb-3">{member.background}</p>
-                  <div className="text-xs text-gray-500 font-medium">{member.expertise}</div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
 
         {/* CTA Section */}
         <section className="py-20 bg-white">
@@ -305,20 +252,22 @@ export default function AboutPage() {
                 that make a real difference in millions of lives.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <motion.button
+                <motion.a
+                  href="/demo-dralexai"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-4 px-8 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl"
+                  className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-4 px-8 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl text-center"
                 >
                   Experience Our Demo
-                </motion.button>
-                <motion.button
+                </motion.a>
+                <motion.a
+                  href="mailto:team@womenhealth.health"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="border-2 border-gray-300 hover:border-blue-600 text-gray-700 hover:text-blue-600 font-semibold py-4 px-8 rounded-xl transition-all duration-300"
+                  className="border-2 border-gray-300 hover:border-blue-600 text-gray-700 hover:text-blue-600 font-semibold py-4 px-8 rounded-xl transition-all duration-300 text-center"
                 >
                   Contact Our Team
-                </motion.button>
+                </motion.a>
               </div>
             </motion.div>
           </div>
