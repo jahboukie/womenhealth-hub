@@ -43,7 +43,7 @@ export default function Layout({ children }: LayoutProps) {
               <a href="#apps" className="text-gray-600 hover:text-primary-600 transition-colors">
                 Apps
               </a>
-              <a href="#about" className="text-gray-600 hover:text-primary-600 transition-colors">
+              <a href="/about" className="text-gray-600 hover:text-primary-600 transition-colors">
                 About
               </a>
               <a href="#contact" className="text-gray-600 hover:text-primary-600 transition-colors">
@@ -152,6 +152,9 @@ export default function Layout({ children }: LayoutProps) {
               © 2024 WomenHealth.Health. All rights reserved.
             </p>
             <div className="flex space-x-6 mt-4 md:mt-0">
+              <a href="/about" className="text-gray-400 hover:text-white text-sm transition-colors">
+                About Us
+              </a>
               <a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">
                 Privacy Policy
               </a>
