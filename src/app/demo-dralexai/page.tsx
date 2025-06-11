@@ -7,7 +7,7 @@ export default function DrAlexDemoPage() {
   useEffect(() => {
     // Redirect to demo platform after a brief loading screen
     const timer = setTimeout(() => {
-      const demoUrl = process.env.NEXT_PUBLIC_DRALEXAI_DEMO_URL || 'https://dralexai-demo-platform-enfmm4bmh.vercel.app';
+      const demoUrl = process.env.NEXT_PUBLIC_DRALEXAI_DEMO_URL || 'https://demo.womenhealth.health';
       window.location.href = demoUrl;
     }, 2000);
 
@@ -110,7 +110,7 @@ export default function DrAlexDemoPage() {
             If you're not redirected automatically:
           </p>
           <a
-            href={process.env.NEXT_PUBLIC_DRALEXAI_DEMO_URL || 'https://dralexai-demo-platform-enfmm4bmh.vercel.app'}
+            href={process.env.NEXT_PUBLIC_DRALEXAI_DEMO_URL || 'https://demo.womenhealth.health'}
             className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-300"
           >
             <span className="text-lg">🚀</span>

@@ -13,9 +13,9 @@
 - **Status**: ✅ LIVE
 
 ### **Demo Platform**
-- **Production URL**: (pending deployment)
-- **Custom Domain**: demo.womenhealth.health (pending)
-- **Status**: 🟡 READY TO DEPLOY
+- **Production URL**: https://dralexai-demo-platform-enfmm4bmh.vercel.app
+- **Custom Domain**: demo.womenhealth.health (DNS configuration needed)
+- **Status**: ✅ LIVE (awaiting custom domain)
 
 ### **Vercel Dashboard**
 - **Project URL**: https://vercel.com/jeremy-browns-projects-378fb2e7/womenhealth-flagship-website
